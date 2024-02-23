@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "lionel messi ",
+    "description": " jugador de futbol",
+    "code": "abc123",
+    "price": 1000,
+    "status": true,
+    "stock": 1,
+    "category": "dios"
+  },
+  {
+    "id": 2,
+    "title": "dibu martinez",
+    "description": " jugador de futbol",
+    "code": "abc345",
+    "price": 23000,
+    "status": true,
+    "stock": 23,
+    "category": "te como"
+  },
+  {
+    "id": 3,
+    "title": "julian alvarez",
+    "description": " jugador de futbol",
+    "code": "abc234",
+    "price": 9999,
+    "status": true,
+    "stock": 9,
+    "category": "arania"
+  }
+]
