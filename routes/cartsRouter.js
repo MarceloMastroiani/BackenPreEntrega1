@@ -39,36 +39,40 @@ cartsRouter.get("/:cid", (req,res) => {
 
 })
 
+
+
+
+
 // (POST) AGREGA PRODUCTOS NUEVOS AL CARRITO SELECCIONADO //
+
 cartsRouter.post("/:cid/product/:pid", (req,res) => {
 
-    const cid = req.params.cid
-    const pid = req.params.pid
+    const cid = parseInt(req.params.cid)
+    const pid = parseInt(req.params.pid)
 
     const cartRead = fs.readFileSync(pathCart, "utf-8")
     const parsedCart = JSON.parse(cartRead)
     const { quantity } = req.body
   
+    const foundCart = parsedCart.find((item) => (item.id) === cid)
+    
+    const foundProduct = foundCart.products.find((produ) => produ.product === pid)
 
-    const foundCart = parsedCart.findIndex((item) => (item.id) === cid)
-    
-    const foundProduct = parsedCart[foundCart].products.findIndex((produ) => produ.product === pid)
-    
     const getProduct = {
 
         product: pid,
         quantity: parseInt(quantity)
     }
 
+// !foundProduct
+    if (foundProduct !== undefined) {
 
-    if (foundProduct !== -1) {
-
-        parsedCart[foundCart].products[foundProduct].quantity += parseInt(quantity)
+        foundCart.products[pid-1].quantity+= parseInt(quantity)
 
     } else {
        
-        parsedCart[foundCart].products.push(getProduct)
-
+        foundCart.products.push(getProduct)
+        console.log("else")
     }
 
     let data = JSON.stringify(parsedCart)
